@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react'
-import { useDatabasePush } from './database'
-import firebase from './firebase'
-import { AuthContext } from './auth'
+import { useDatabasePush } from '../../database'
+import firebase from '../../firebase'
+import { AuthContext } from '../../auth'
+import { WrapCommentForm, TextArea, Button } from './style'
 
 const NewComment = () => {
   const [, save] = useDatabasePush('comments')
@@ -31,11 +32,12 @@ const NewComment = () => {
   }
 
   return (
-    <div>
-      <textarea value={comment} onChange={evt => setComment(evt.target.value)} cols="30" rows="10"></textarea>
-      <br />
-      <button onClick={createComment}>Comentar</button>
-    </div>
+    <WrapCommentForm>
+      <TextArea value={comment} onChange={evt => setComment(evt.target.value)} cols="30" rows="10" className="form-control" />
+      <div className="text-center">
+        <Button onClick={createComment}>Comentar</Button>
+      </div>
+    </WrapCommentForm>
   )
 }
 

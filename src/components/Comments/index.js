@@ -1,6 +1,7 @@
 import React from 'react'
-import { useDatabase } from './database'
+import { useDatabase } from '../../database'
 import Comment from './Comment'
+import { WrapComments } from './style'
 
 const Comments = () => {
   const data = useDatabase('comments')
@@ -15,8 +16,16 @@ const Comments = () => {
     return <p>Carregando...</p>
   }
 
-  return ids.map(id => {
-    return <Comment key={id} comment={data[id]} />
-  })
+  return (
+    <WrapComments>
+      {
+        ids.map(id => {
+          return (
+            <Comment key={id} comment={data[id]} />
+          )
+        })
+      }
+    </WrapComments>
+  )
 }
 export default Comments
